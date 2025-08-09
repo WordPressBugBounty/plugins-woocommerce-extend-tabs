@@ -1,15 +1,15 @@
 <?php
 /**
- * Plugin Name: WooCommerce Expand Tabs
- * Plugin URI: http://wordpress.org/plugins/woocommerce-expand-tabs
- * Description: Expand the tabs in Products page as that is considered hidden content by Google.
- * Version: 1.29
- * Author: SilkyPress
- * Author URI: https://www.silkypress.com
- * License: GPL2
+ * Plugin Name:          WooCommerce Expand Tabs
+ * Plugin URI:           http://wordpress.org/plugins/woocommerce-expand-tabs
+ * Description:          Expand the tabs in Products page as that is considered hidden content by Google.
+ * Version:              1.29
+ * Author:               SilkyPress
+ * Author URI:           https://www.silkypress.com
+ * License:              GPL2
  *
  * WC requires at least: 2.3.0
- * WC tested up to: 9.4 
+ * WC tested up to:      9.8 
  */
 
 defined( 'ABSPATH' ) || exit;
