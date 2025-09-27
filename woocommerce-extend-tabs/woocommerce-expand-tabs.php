@@ -1,15 +1,15 @@
 <?php
 /**
- * Plugin Name:          WooCommerce Expand Tabs
+ * Plugin Name:          Expand Tabs for WooCommerce
  * Plugin URI:           http://wordpress.org/plugins/woocommerce-expand-tabs
  * Description:          Expand the tabs in Products page as that is considered hidden content by Google.
- * Version:              1.29
+ * Version:              1.30
  * Author:               SilkyPress
  * Author URI:           https://www.silkypress.com
  * License:              GPL2
  *
  * WC requires at least: 2.3.0
- * WC tested up to:      9.8 
+ * WC tested up to:      10.2 
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -38,6 +38,11 @@ if ( ! function_exists( 'woocommerce_output_product_data_tabs' ) && use_expand_t
  * where the code for hidding the content of the tabs is stripped down
  */
 function woocommerce_expand_tabs_js() {
+	global $post;
+
+	if ( ! is_product() && ( empty( $post->post_content ) || ! strstr( $post->post_content, '[product_page' ) ) ) {
+		return;
+	}
 
 	$folder = woocommerce_expand_tabs_get_folder();
 
@@ -49,7 +54,7 @@ function woocommerce_expand_tabs_js() {
 
 	$prefix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-	wp_register_script( 'wc-single-product', plugins_url( '/', __FILE__ ) . $folder . '/single-product' . $prefix . '.js', array( 'jquery' ), '1.29', true );
+	wp_register_script( 'wc-single-product', plugins_url( '/', __FILE__ ) . $folder . '/single-product' . $prefix . '.js', array( 'jquery' ), '1.30', true );
 	wp_enqueue_script( 'wc-single-product' );
 }
 if ( use_expand_tabs() ) {
@@ -66,20 +71,24 @@ function woocommerce_expand_tabs_get_folder() {
 	}
 
 	$versions = [
-		'wc26' => '3.0',
-		'wc30' => '3.0.50',
-		'wc31' => '3.1.50',
-		'wc32' => '3.2.50',
-		'wc33' => '3.3.50',
-		'wc34' => '3.5.50',
-		'wc36' => '3.7.50',
-		'wc38' => '3.8.50',
-		'wc39' => '4.3.50',
-		'wc44' => '5.0.50',
-		'wc51' => '6.6.50',
-		'wc67' => '9.2.50',
-		'wc93' => '9.3.50',
-		'wc94' => '9.4.50',
+		'wc26'  => '3.0',
+		'wc30'  => '3.0.50',
+		'wc31'  => '3.1.50',
+		'wc32'  => '3.2.50',
+		'wc33'  => '3.3.50',
+		'wc34'  => '3.5.50',
+		'wc36'  => '3.7.50',
+		'wc38'  => '3.8.50',
+		'wc39'  => '4.3.50',
+		'wc44'  => '5.0.50',
+		'wc51'  => '6.6.50',
+		'wc67'  => '9.2.50',
+		'wc93'  => '9.3.50',
+		'wc94'  => '9.7.50',
+		'wc98'  => '9.8.50',
+		'wc99'  => '9.9.50',
+		'wc100' => '10.1.50',
+		'wc102' => '10.2.50',
 	];
 
 	foreach ( $versions as $folder => $max_wc_version ) {
@@ -88,7 +97,7 @@ function woocommerce_expand_tabs_get_folder() {
 		}
 	}
 
-	return 'wc94';
+	return 'wc102';
 }
 
 
@@ -246,7 +255,7 @@ if ( get_template() === 'woodmart' ) {
 function expand_tabs_settings( $settings ) {
 	$settings[] = array(
 		'title' => __( 'Expand Tabs Settings', 'woocommerce' ),
-		'desc'  => __( 'The following settings are added by the <a href="https://wordpress.org/plugins/woocommerce-extend-tabs/" target="_blank">WooCommerce Expand Tabs</a> plugin: ' ),
+		'desc'  => __( 'The following settings are added by the <a href="https://wordpress.org/plugins/woocommerce-extend-tabs/" target="_blank">Expand Tabs for WooCommerce</a> plugin: ' ),
 		'type'  => 'title',
 		'id'    => 'expand_tabs_options',
 	);
