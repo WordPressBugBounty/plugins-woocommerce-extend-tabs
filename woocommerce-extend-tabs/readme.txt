@@ -2,10 +2,10 @@
 Contributors: diana_burduja
 Tags: woocommerce, tabs, product page tabs, expand tabs, woocommerce SEO
 Requires at least: 3.0.1
-Tested up to: 6.8 
-Stable tag: 1.30
-License: GPLv2 or later 
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 6.9 
+Stable tag: 1.31
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 5.2.4
 
 Expand the tabs in the single-product page.
@@ -60,6 +60,9 @@ We are aware only of an incompatibility with the Digi theme by Nasa. For other i
 
 
 == Changelog ==
+
+= 1.31 =
+* Compatibility with WC10.4
 
 = 1.30 =
 * Compatibility with WC10.2

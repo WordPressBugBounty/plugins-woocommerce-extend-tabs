@@ -3,13 +3,12 @@
  * Plugin Name:          Expand Tabs for WooCommerce
  * Plugin URI:           http://wordpress.org/plugins/woocommerce-expand-tabs
  * Description:          Expand the tabs in Products page as that is considered hidden content by Google.
- * Version:              1.30
+ * Version:              1.31
  * Author:               SilkyPress
  * Author URI:           https://www.silkypress.com
- * License:              GPL2
  *
  * WC requires at least: 2.3.0
- * WC tested up to:      10.2 
+ * WC tested up to:      10.4 
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -88,7 +87,8 @@ function woocommerce_expand_tabs_get_folder() {
 		'wc98'  => '9.8.50',
 		'wc99'  => '9.9.50',
 		'wc100' => '10.1.50',
-		'wc102' => '10.2.50',
+		'wc102' => '10.3.50',
+		'wc104' => '10.4.50',
 	];
 
 	foreach ( $versions as $folder => $max_wc_version ) {
@@ -97,7 +97,7 @@ function woocommerce_expand_tabs_get_folder() {
 		}
 	}
 
-	return 'wc102';
+	return array_key_last( $versions ); 
 }
 
 
@@ -142,15 +142,7 @@ function use_expand_tabs() {
 		$option = get_option( 'expand_tabs_desktop' );
 	}
 
-	if ( ! $option ) {
-		$option = 'yes';
-	}
-
-	if ( $option == 'yes' ) {
-		return true;
-	}
-
-	return false;
+	return ( $option === false || $option === 'yes' );
 }
 
 
